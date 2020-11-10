@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
 
 // tslint:disable-next-line: typedef
 getValues(){
-  this.http.get('http://localhost:5003/api/values').subscribe(reponse => {
+  this.http.get('http://localhost:5002/api/values').subscribe(reponse => {
       this.values = reponse;
    }, error => {
        console.log(error);
