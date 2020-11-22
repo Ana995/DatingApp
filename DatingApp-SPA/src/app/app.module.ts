@@ -1,3 +1,4 @@
+import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {HttpClientModule } from '@angular/common/http';
@@ -23,8 +24,12 @@ import { MemberListComponent } from './members/member-list/member-list.component
 import {appRoutes} from './routes';
 import {MemberCardComponent} from './members/member-card/member-card.component';
 import {MemberDetailComponent} from './members/member-detail/member-detail.component';
+import {MemberEditComponent} from './members/member-edit/member-edit.component';
 import {MemberListResolver} from './_resolver/member-list.resolver';
-import { NgxGalleryModule } from 'ngx-gallery';
+import {MemberEditResolver} from './_resolver/member-edit.resolver';
+
+
+import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 export function  tokenGetter(){
   return localStorage.getItem('token');
 }
@@ -38,7 +43,8 @@ export function  tokenGetter(){
       MessagesComponent,
       MemberListComponent,
       MemberCardComponent,
-      MemberDetailComponent
+      MemberDetailComponent,
+      MemberEditComponent
    ],
   imports: [
     BrowserModule,
@@ -48,7 +54,7 @@ export function  tokenGetter(){
     TabsModule.forRoot(),
     BsDropdownModule.forRoot(),
     RouterModule.forRoot(appRoutes),
-    NgxGalleryModule;
+    NgxGalleryModule,
     JwtModule.forRoot({
       config:{
         tokenGetter:tokenGetter,
@@ -65,7 +71,9 @@ export function  tokenGetter(){
     AuthGuard,
     UserService,
     MemberDetailResolver,
-    MemberListResolver
+    MemberListResolver,
+    MemberEditResolver,
+    PreventUnsavedChanges
 
   ],
   bootstrap: [AppComponent]
