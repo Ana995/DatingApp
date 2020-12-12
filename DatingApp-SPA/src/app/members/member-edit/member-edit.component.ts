@@ -14,6 +14,7 @@ export class MemberEditComponent implements OnInit {
 
   @ViewChild('editForm') editForm:NgForm;
   user:User;
+  photoUrl : string;
   //in case the windows is closed
   @HostListener('window:beforeunload',['$event'])
   unloadNotification($event: any){
@@ -27,7 +28,7 @@ export class MemberEditComponent implements OnInit {
 
   ngOnInit() {
      this.route.data.subscribe(data => {this.user = data['user'] });
-     
+     this.authService.currentPhotoUrl.subscribe(photoUrl => this.photoUrl= photoUrl);
   }
   updateUser(){
     this.userService.updateUser(this.authService.decodedToken.nameid, this.user).subscribe( next => {
@@ -38,5 +39,8 @@ export class MemberEditComponent implements OnInit {
     })
  
   }
+updateMainPhoto(photoUrl){
+  this.user.photoURL = photoUrl;
+}
 
 }
