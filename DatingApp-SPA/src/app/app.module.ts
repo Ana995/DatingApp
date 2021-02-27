@@ -1,3 +1,6 @@
+import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
+import { MessagesResolver } from './_resolver/messages.resolver';
+import { ListsResolver } from './_resolver/lists.resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -9,7 +12,6 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
-
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import {RouterModule} from '@angular/router';
 import{JwtModule} from '@auth0/angular-jwt';
@@ -51,7 +53,9 @@ export function  tokenGetter(){
       MemberCardComponent,
       MemberDetailComponent,
       MemberEditComponent,
-      PhotoEditorComponent
+      PhotoEditorComponent,
+      MemberMessagesComponent,
+    
    ],
   imports: [
     BrowserModule,
@@ -87,7 +91,9 @@ export function  tokenGetter(){
     MemberDetailResolver,
     MemberListResolver,
     MemberEditResolver,
-    PreventUnsavedChanges
+    MessagesResolver,
+    PreventUnsavedChanges,
+    ListsResolver,
 
   ],
   bootstrap: [AppComponent]
